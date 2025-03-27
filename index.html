@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #4c6f76, #3e4c50);
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 50px;
+            color: #fff;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #fff;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .botao {
+            background: #6f8b84;
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+        }
+
+        .botao:hover {
+            background: #4c6f76;
+            transform: scale(1.05);
+        }
+
+        .botao:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .polaroid {
+            display: inline-block;
+            margin: 20px 0;
+            border: 10px solid #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(3deg);
+        }
+
+        .polaroid img {
+            width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .caption {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 10px;
+            font-style: italic;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Para Você ❤️</h1>
+        <p id="mensagem">Algo especial para a dona do meu coração...</p>
+
+        <div id="imagem-container" class="polaroid" style="display: none;">
+            <img id="imagem" src="" alt="Foto Polaroid">
+            <div class="caption">Momentos especiais</div>
+        </div>
+
+        <div>
+            <button class="botao" id="btn-voltar" onclick="MostrarMensagemAnterior()" disabled>Voltar</button>
+            <button class="botao" id="btn-proximo" onclick="MostrarProximaMensagem()">Próximo</button>
+        </div>
+    </div>
+
+    <script>
+        const mensagens = [
+            "oii, meu amor!",
+            "você é extremamente especial para mim",
+            "sou grato por estar ao seu lado",
+            "você é o sol dos meus dias",
+            "obrigado por tanto,amo você!"
+        ];
+
+        const imagens = [
+            "", // Primeira frase sem imagem
+            "images/IMG_2708.JPG",
+            "images/IMG_3007.png",
+            "images/IMG_2713.JPG",
+            "images/IMG_3012.png"
+        ];
+
+        let indice = 0;
+        const mensagemEl = document.getElementById("mensagem");
+        const imagemEl = document.getElementById("imagem");
+        const imagemContainerEl = document.getElementById("imagem-container");
+        const btnVoltar = document.getElementById("btn-voltar");
+        const btnProximo = document.getElementById("btn-proximo");
+
+        function MostrarProximaMensagem() {
+            if (indice < mensagens.length - 1) {
+                indice++;
+                mensagemEl.textContent = mensagens[indice];
+
+                if (imagens[indice]) {
+                    imagemEl.src = imagens[indice];
+                    imagemContainerEl.style.display = "block";
+                } else {
+                    imagemContainerEl.style.display = "none";
+                }
+            } else {
+                mensagemEl.textContent = "Obrigado por tanto! ❤️";
+            }
+
+            btnVoltar.disabled = indice === 0;
+            btnProximo.disabled = indice === mensagens.length - 1;
+        }
+
+        function MostrarMensagemAnterior() {
+            if (indice > 0) {
+                indice--;
+                mensagemEl.textContent = mensagens[indice];
+
+                if (imagens[indice]) {
+                    imagemEl.src = imagens[indice];
+                    imagemContainerEl.style.display = "block";
+                } else {
+                    imagemContainerEl.style.display = "none";
+                }
+            }
+
+            btnVoltar.disabled = indice === 0;
+            btnProximo.disabled = indice === mensagens.length - 1;
+        }
+    </script>
+</body>
+</html>
